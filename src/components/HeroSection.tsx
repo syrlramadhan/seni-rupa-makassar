@@ -1,14 +1,21 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HeroSection() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Background with scattered artwork images */}
       <div className="absolute inset-0">
-        {/* Top left artwork */}
-        <div className="absolute top-16 left-8 w-48 h-64 transform -rotate-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
+        {/* Top left artwork - Hide on mobile */}
+        <div className="hidden md:block absolute top-16 left-8 w-48 h-64 transform -rotate-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop"
             alt="Abstract Art"
@@ -18,8 +25,8 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-lg"></div>
         </div>
 
-        {/* Top right artwork */}
-        <div className="absolute top-24 right-12 w-40 h-52 transform rotate-6 opacity-80 hover:opacity-100 transition-opacity duration-300">
+        {/* Top right artwork - Hide on mobile */}
+        <div className="hidden md:block absolute top-24 right-12 w-40 h-52 transform rotate-6 opacity-80 hover:opacity-100 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop"
             alt="Portrait Art"
@@ -29,8 +36,8 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent rounded-lg"></div>
         </div>
 
-        {/* Bottom left artwork */}
-        <div className="absolute bottom-20 left-16 w-52 h-40 transform rotate-3 opacity-80 hover:opacity-100 transition-opacity duration-300">
+        {/* Bottom left artwork - Smaller on mobile */}
+        <div className="absolute bottom-20 left-4 md:left-16 w-32 h-24 md:w-52 md:h-40 transform rotate-3 opacity-60 md:opacity-80 hover:opacity-100 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=500&h=400&fit=crop"
             alt="Modern Art"
@@ -40,8 +47,8 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent rounded-lg"></div>
         </div>
 
-        {/* Center bottom artwork */}
-        <div className="absolute bottom-16 right-1/4 w-44 h-56 transform -rotate-6 opacity-80 hover:opacity-100 transition-opacity duration-300">
+        {/* Center bottom artwork - Smaller on mobile */}
+        <div className="absolute bottom-16 right-4 md:right-1/4 w-28 h-36 md:w-44 md:h-56 transform -rotate-6 opacity-60 md:opacity-80 hover:opacity-100 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop"
             alt="Contemporary Art"
@@ -51,8 +58,8 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent rounded-lg"></div>
         </div>
 
-        {/* Additional floating artworks */}
-        <div className="absolute top-1/3 left-1/4 w-36 h-48 transform rotate-12 opacity-60 hover:opacity-90 transition-opacity duration-300">
+        {/* Additional floating artworks - Hide on mobile */}
+        <div className="hidden lg:block absolute top-1/3 left-1/4 w-36 h-48 transform rotate-12 opacity-60 hover:opacity-90 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=400&fit=crop"
             alt="Gallery Art"
@@ -61,7 +68,7 @@ export default function HeroSection() {
           />
         </div>
 
-        <div className="absolute bottom-1/3 right-8 w-32 h-40 transform -rotate-3 opacity-60 hover:opacity-90 transition-opacity duration-300">
+        <div className="hidden lg:block absolute bottom-1/3 right-8 w-32 h-40 transform -rotate-3 opacity-60 hover:opacity-90 transition-opacity duration-300">
           <Image
             src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=300&h=400&fit=crop"
             alt="Art Collection"
@@ -70,9 +77,20 @@ export default function HeroSection() {
           />
         </div>
 
-        {/* Subtle overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/40 via-transparent to-slate-900/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/20 to-transparent"></div>
+        {/* Mobile-only background artwork - Center piece */}
+        <div className="block md:hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-52 rotate-12 opacity-30">
+          <Image
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop"
+            alt="Background Art"
+            fill
+            className="object-cover rounded-lg shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-lg"></div>
+        </div>
+
+        {/* Subtle overlay gradient - Stronger on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 md:from-slate-900/40 via-transparent to-slate-900/60 md:to-slate-900/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/40 md:via-slate-800/20 to-transparent"></div>
       </div>
 
       {/* Main content */}
@@ -97,12 +115,18 @@ export default function HeroSection() {
 
         {/* Call to action */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-          <button className="group relative overflow-hidden px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg rounded-none border-2 border-transparent hover:border-white/30 transform hover:scale-105 transition-all duration-300">
+          <button 
+            onClick={() => scrollToSection('semua-karya-seni')}
+            className="group relative overflow-hidden px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg rounded-none border-2 border-transparent hover:border-white/30 transform hover:scale-105 transition-all duration-300 inline-block"
+          >
             <span className="relative z-10">EXPLORE ARTWORKS</span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
           </button>
           
-          <button className="group px-10 py-4 border-2 border-white/50 text-white font-bold text-lg rounded-none hover:bg-white hover:text-slate-900 transform hover:scale-105 transition-all duration-300">
+          <button 
+            onClick={() => scrollToSection('seniman-berbakat')}
+            className="group px-10 py-4 border-2 border-white/50 text-white font-bold text-lg rounded-none hover:bg-white hover:text-slate-900 transform hover:scale-105 transition-all duration-300"
+          >
             VIEW ARTISTS
           </button>
         </div>

@@ -20,7 +20,7 @@ export default function ArtistsGallery() {
   };
 
   return (
-    <section className="relative py-16 overflow-hidden bg-white">
+    <section id="seniman-berbakat" className="relative py-16 overflow-hidden bg-white">
       {/* Artistic Background */}
       <div className="absolute inset-0">
         {/* Gradient overlays */}

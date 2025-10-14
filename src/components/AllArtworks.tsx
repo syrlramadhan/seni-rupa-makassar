@@ -75,7 +75,7 @@ export default function AllArtworks() {
   };
 
   return (
-    <section className="relative min-h-screen py-16 bg-white">
+    <section id="semua-karya-seni" className="relative min-h-screen py-16 bg-white">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-50/40 to-purple-50/40 rounded-full blur-xl"></div>
