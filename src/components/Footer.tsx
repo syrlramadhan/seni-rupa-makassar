@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Copyright */}
           <div className="text-gray-400 text-sm">
-            © {currentYear} Seni Rupa Makassar. All rights reserved.
+            © {currentYear} Senirupa Makassar. All rights reserved.
           </div>
 
           {/* Credits */}

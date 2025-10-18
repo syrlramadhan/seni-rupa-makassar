@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -11,7 +10,7 @@ export default function HeroSection() {
     }
   };
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" style={{ background: 'linear-gradient(to bottom right, #1c1917, #78350f, #7f1d1d)' }}>
       {/* Background with scattered artwork images */}
       <div className="absolute inset-0">
         {/* Top left artwork - Hide on mobile */}
@@ -22,7 +21,7 @@ export default function HeroSection() {
             fill
             className="object-cover rounded-lg shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent rounded-lg"></div>
+          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
         </div>
 
         {/* Top right artwork - Hide on mobile */}
@@ -33,7 +32,7 @@ export default function HeroSection() {
             fill
             className="object-cover rounded-lg shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent rounded-lg"></div>
+          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(196, 52, 56, 0.2), transparent)' }}></div>
         </div>
 
         {/* Bottom left artwork - Smaller on mobile */}
@@ -44,7 +43,7 @@ export default function HeroSection() {
             fill
             className="object-cover rounded-lg shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent rounded-lg"></div>
+          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
         </div>
 
         {/* Center bottom artwork - Smaller on mobile */}
@@ -55,7 +54,7 @@ export default function HeroSection() {
             fill
             className="object-cover rounded-lg shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent rounded-lg"></div>
+          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
         </div>
 
         {/* Additional floating artworks - Hide on mobile */}
@@ -85,12 +84,12 @@ export default function HeroSection() {
             fill
             className="object-cover rounded-lg shadow-xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-lg"></div>
+          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.3), rgba(196, 52, 56, 0.3))' }}></div>
         </div>
 
         {/* Subtle overlay gradient - Stronger on mobile */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 md:from-slate-900/40 via-transparent to-slate-900/60 md:to-slate-900/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/40 md:via-slate-800/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 md:from-stone-900/40 via-transparent to-stone-900/60 md:to-stone-900/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-950/40 md:via-amber-950/20 to-transparent"></div>
       </div>
 
       {/* Main content */}
@@ -98,18 +97,28 @@ export default function HeroSection() {
         {/* Main heading */}
         <div className="mb-12">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-none tracking-tight">
-            <span className="block mb-4">SENI RUPA</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            <span className="block mb-4">SENIRUPA</span>
+            <span 
+              className="block text-transparent bg-clip-text"
+              style={{ 
+                backgroundImage: `linear-gradient(to right, #d2ae6d, #eab308, #d2ae6d)`,
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text'
+              }}
+            >
               MAKASSAR
             </span>
           </h1>
           
           {/* Subtitle with typewriter effect */}
           <div className="mt-8">
-            <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wider">
+            <p className="text-xl md:text-2xl text-gray-200 font-light tracking-wider">
               TEMUKAN KARYA SENI TERBAIK DARI SENIMAN BERBAKAT DI SELURUH INDONESIA
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-4 rounded-full"></div>
+            <div 
+              className="w-24 h-1 mx-auto mt-4 rounded-full"
+              style={{ background: `linear-gradient(to right, #d2ae6d, #eab308)` }}
+            ></div>
           </div>
         </div>
 
@@ -117,15 +126,19 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <button 
             onClick={() => scrollToSection('semua-karya-seni')}
-            className="group relative overflow-hidden px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg rounded-none border-2 border-transparent hover:border-white/30 transform hover:scale-105 transition-all duration-300 inline-block"
+            className="group relative overflow-hidden px-10 py-4 text-white font-bold text-lg rounded-none border-2 border-transparent hover:border-white/30 transform hover:scale-105 transition-all duration-300 inline-block"
+            style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}
           >
             <span className="relative z-10">EXPLORE ARTWORKS</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+            <div 
+              className="absolute inset-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+              style={{ background: `linear-gradient(to right, #c43438, #d2ae6d)` }}
+            ></div>
           </button>
           
           <button 
             onClick={() => scrollToSection('seniman-berbakat')}
-            className="group px-10 py-4 border-2 border-white/50 text-white font-bold text-lg rounded-none hover:bg-white hover:text-slate-900 transform hover:scale-105 transition-all duration-300"
+            className="group px-10 py-4 border-2 border-white/50 text-white font-bold text-lg rounded-none hover:bg-white hover:text-stone-900 transform hover:scale-105 transition-all duration-300"
           >
             VIEW ARTISTS
           </button>
@@ -134,25 +147,25 @@ export default function HeroSection() {
         {/* Featured stats or info */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-2xl mx-auto mb-20">
           <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">50+</div>
-            <div className="text-gray-400 uppercase tracking-wider text-sm">Artists</div>
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>50+</div>
+            <div className="text-gray-300 uppercase tracking-wider text-sm">Artists</div>
           </div>
           <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">200+</div>
-            <div className="text-gray-400 uppercase tracking-wider text-sm">Artworks</div>
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>200+</div>
+            <div className="text-gray-300 uppercase tracking-wider text-sm">Artworks</div>
           </div>
           <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors duration-300">15+</div>
-            <div className="text-gray-400 uppercase tracking-wider text-sm">Years</div>
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>15+</div>
+            <div className="text-gray-300 uppercase tracking-wider text-sm">Years</div>
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="flex flex-col items-center text-white/70">
-          <span className="text-sm mb-2 uppercase tracking-wider">Scroll Down</span>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="absolute bottom-8 md:bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <div className="flex flex-col items-center text-white/80 hover:text-white transition-colors duration-300">
+          <span className="text-xs md:text-sm mb-2 uppercase tracking-wider font-medium">Scroll Down</span>
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
@@ -160,8 +173,8 @@ export default function HeroSection() {
 
       {/* Decorative elements */}
       <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-blue-400 rounded-full opacity-80 animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 bg-purple-400 rounded-full opacity-70 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-1/3 left-1/3 w-1 h-1 rounded-full opacity-80 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '1s' }}></div>
+      <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 rounded-full opacity-70 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '2s' }}></div>
     </section>
   );
 }

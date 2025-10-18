@@ -7,6 +7,7 @@ export interface Artist {
   style: string;
   location: string;
   experience: string;
+  whatsapp?: string;
 }
 
 export interface Artwork {
@@ -17,6 +18,7 @@ export interface Artwork {
   medium: string;
   description: string;
   price?: string;
+  created_at: string; // ISO date string
 }
 
 export const artistsData: Artist[] = [
@@ -24,6 +26,7 @@ export const artistsData: Artist[] = [
     id: "1",
     name: "Andi Mappasalawang",
     bio: "Seniman lukis kontemporer yang menggabungkan budaya Bugis-Makassar dengan teknik modern. Karya-karyanya seringkali mengangkat tema kehidupan nelayan dan tradisi maritime Sulawesi Selatan.",
+    whatsapp: "6285341847801",
     profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     style: "Kontemporer Maritime",
     location: "Makassar, Sulawesi Selatan",
@@ -35,7 +38,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Cat minyak di kanvas",
-        description: "Lukisan yang menggambarkan kehidupan nelayan tradisional di pesisir Makassar dengan latar belakang sunset yang memukau."
+        description: "Lukisan yang menggambarkan kehidupan nelayan tradisional di pesisir Makassar dengan latar belakang sunset yang memukau.",
+        created_at: "2024-08-15T10:30:00Z"
       },
       {
         id: "1b",
@@ -43,7 +47,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Akrilik di kanvas",
-        description: "Interpretasi modern dari kapal tradisional Bugis-Makassar dalam nuansa kontemporer."
+        description: "Interpretasi modern dari kapal tradisional Bugis-Makassar dalam nuansa kontemporer.",
+        created_at: "2024-06-20T14:15:00Z"
       },
       {
         id: "1c",
@@ -51,7 +56,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Mixed media",
-        description: "Representasi abstrak dari kehidupan pasar tradisional Makassar dengan warna-warna vibrant."
+        description: "Representasi abstrak dari kehidupan pasar tradisional Makassar dengan warna-warna vibrant.",
+        created_at: "2024-10-01T09:45:00Z"
       }
     ]
   },
@@ -70,7 +76,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Cat minyak di kanvas",
-        description: "Potret realistis seorang gadis dengan pakaian adat Bugis yang memukau."
+        description: "Potret realistis seorang gadis dengan pakaian adat Bugis yang memukau.",
+        created_at: "2024-09-10T16:20:00Z"
       },
       {
         id: "2b",
@@ -78,7 +85,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Akrilik di kanvas",
-        description: "Lukisan penuh emosi tentang kehidupan pedagang kaki lima di Makassar."
+        description: "Lukisan penuh emosi tentang kehidupan pedagang kaki lima di Makassar.",
+        created_at: "2024-05-25T11:30:00Z"
       },
       {
         id: "2c",
@@ -86,7 +94,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Pastel di kertas",
-        description: "Gerakan anggun penari tradisional Bugis dalam sapuan warna yang lembut."
+        description: "Gerakan anggun penari tradisional Bugis dalam sapuan warna yang lembut.",
+        created_at: "2024-07-18T13:45:00Z"
       }
     ]
   },
@@ -105,7 +114,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Spray paint dan akrilik",
-        description: "Mural besar yang memadukan motif kapal Pinisi dengan elemen graffiti modern."
+        description: "Mural besar yang memadukan motif kapal Pinisi dengan elemen graffiti modern.",
+        created_at: "2024-10-10T08:15:00Z"
       },
       {
         id: "3b",
@@ -113,7 +123,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Mixed media pada dinding",
-        description: "Representasi dinamis kehidupan perkotaan Makassar dalam gaya street art."
+        description: "Representasi dinamis kehidupan perkotaan Makassar dalam gaya street art.",
+        created_at: "2024-04-12T15:30:00Z"
       },
       {
         id: "3c",
@@ -121,7 +132,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Digital art print",
-        description: "Kolaborasi antara budaya pop modern dengan warisan budaya Sulawesi Selatan."
+        description: "Kolaborasi antara budaya pop modern dengan warisan budaya Sulawesi Selatan.",
+        created_at: "2024-08-28T12:00:00Z"
       }
     ]
   },
@@ -140,7 +152,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Watercolor di kertas",
-        description: "Lukisan alam dengan teknik cat air yang menangkap keindahan fajar di pantai Makassar."
+        description: "Lukisan alam dengan teknik cat air yang menangkap keindahan fajar di pantai Makassar.",
+        created_at: "2024-09-25T07:20:00Z"
       },
       {
         id: "4b",
@@ -148,7 +161,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Cat minyak di kanvas",
-        description: "Suasana mistis hutan bambu dengan permainan cahaya yang memukau."
+        description: "Suasana mistis hutan bambu dengan permainan cahaya yang memukau.",
+        created_at: "2024-03-08T10:45:00Z"
       },
       {
         id: "4c",
@@ -156,7 +170,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Pastel dan charcoal",
-        description: "Lukisan spiritual yang menggambarkan kedamaian dalam kontemplasi senja."
+        description: "Lukisan spiritual yang menggambarkan kedamaian dalam kontemplasi senja.",
+        created_at: "2024-06-30T18:15:00Z"
       }
     ]
   },
@@ -175,7 +190,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Digital illustration",
-        description: "Interpretasi futuristik kapal Pinisi dalam setting cyberpunk yang menawan."
+        description: "Interpretasi futuristik kapal Pinisi dalam setting cyberpunk yang menawan.",
+        created_at: "2024-10-05T20:30:00Z"
       },
       {
         id: "5b",
@@ -183,7 +199,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Digital painting",
-        description: "Visualisasi epik cerita La Galigo dengan gaya fantasi modern."
+        description: "Visualisasi epik cerita La Galigo dengan gaya fantasi modern.",
+        created_at: "2024-07-03T14:20:00Z"
       },
       {
         id: "5c",
@@ -191,7 +208,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "3D digital art",
-        description: "Kreatur mitologi laut Sulawesi dalam interpretasi 3D yang spektakuler."
+        description: "Kreatur mitologi laut Sulawesi dalam interpretasi 3D yang spektakuler.",
+        created_at: "2024-09-15T11:10:00Z"
       }
     ]
   },
@@ -210,7 +228,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Tenun dan cat akrilik",
-        description: "Kolaborasi antara teknik tenun tradisional Bugis dengan lukisan kontemporer."
+        description: "Kolaborasi antara teknik tenun tradisional Bugis dengan lukisan kontemporer.",
+        created_at: "2024-08-05T09:30:00Z"
       },
       {
         id: "6b",
@@ -218,7 +237,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=800&fit=crop",
         year: 2022,
         medium: "Mixed media pada kain",
-        description: "Transformasi sarung tradisional menjadi karya seni visual yang menawan."
+        description: "Transformasi sarung tradisional menjadi karya seni visual yang menawan.",
+        created_at: "2024-05-10T16:45:00Z"
       },
       {
         id: "6c",
@@ -226,7 +246,8 @@ export const artistsData: Artist[] = [
         image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&h=800&fit=crop",
         year: 2023,
         medium: "Batik dan collage",
-        description: "Perpaduan teknik batik dengan elemen collage dalam komposisi yang harmonis."
+        description: "Perpaduan teknik batik dengan elemen collage dalam komposisi yang harmonis.",
+        created_at: "2024-10-12T13:25:00Z"
       }
     ]
   }

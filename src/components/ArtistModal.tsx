@@ -1,8 +1,9 @@
 'use client';
 
-import { Artist } from '@/data/artists';
+import { Artist, Artwork } from '@/data/artists';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ArtworkModal from './ArtworkModal';
 
 interface ArtistModalProps {
   artist: Artist | null;
@@ -11,6 +12,9 @@ interface ArtistModalProps {
 }
 
 export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProps) {
+  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
+  const [isArtworkModalOpen, setIsArtworkModalOpen] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -22,6 +26,16 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
+
+  const handleArtworkClick = (artwork: Artwork) => {
+    setSelectedArtwork(artwork);
+    setIsArtworkModalOpen(true);
+  };
+
+  const handleCloseArtworkModal = () => {
+    setIsArtworkModalOpen(false);
+    setSelectedArtwork(null);
+  };
 
   if (!isOpen || !artist) return null;
 
@@ -66,7 +80,14 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
               </div>
               <div>
                 <h2 className="text-3xl font-bold mb-2 text-gray-800">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                  <span 
+                    className="text-transparent bg-clip-text"
+                    style={{ 
+                      backgroundImage: `linear-gradient(to right, #d2ae6d, #c43438)`,
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text'
+                    }}
+                  >
                     {artist.name}
                   </span>
                 </h2>
@@ -80,7 +101,13 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                   <span>•</span>
                   <span>{artist.experience} pengalaman</span>
                   <span>•</span>
-                  <span className="px-3 py-1 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-full text-sm text-gray-700 border border-gray-200">
+                  <span 
+                    className="px-3 py-1 rounded-full text-sm text-white border"
+                    style={{ 
+                      background: `linear-gradient(to right, #d2ae6d, #c43438)`,
+                      borderColor: '#d2ae6d'
+                    }}
+                  >
                     {artist.style}
                   </span>
                 </div>
@@ -93,7 +120,10 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
             {/* Biography */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <div className="w-5 h-5 mr-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded flex items-center justify-center">
+                <div 
+                  className="w-5 h-5 mr-2 rounded flex items-center justify-center"
+                  style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}
+                >
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
@@ -106,7 +136,10 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
             {/* Artworks */}
             <div>
               <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
-                <div className="w-5 h-5 mr-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded flex items-center justify-center">
+                <div 
+                  className="w-5 h-5 mr-2 rounded flex items-center justify-center"
+                  style={{ background: `linear-gradient(to right, #c43438, #d2ae6d)` }}
+                >
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                   </svg>
@@ -116,7 +149,11 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {artist.artworks.map((artwork) => (
-                  <div key={artwork.id} className="group bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
+                  <div 
+                    key={artwork.id} 
+                    className="group bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    onClick={() => handleArtworkClick(artwork)}
+                  >
                     <div className="relative h-64 overflow-hidden">
                       <Image
                         src={artwork.image}
@@ -131,10 +168,33 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                     </div>
                     
                     <div className="p-6">
-                      <h4 className="font-semibold text-gray-800 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-pink-400 transition-all duration-200">
+                      <h4 
+                        className="font-semibold text-gray-800 mb-2 transition-all duration-200"
+                        style={{ color: '#1f2937' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundImage = 'linear-gradient(to right, #d2ae6d, #c43438)';
+                          e.currentTarget.style.webkitBackgroundClip = 'text';
+                          e.currentTarget.style.backgroundClip = 'text';
+                          e.currentTarget.style.color = 'transparent';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundImage = 'none';
+                          e.currentTarget.style.color = '#1f2937';
+                        }}
+                      >
                         {artwork.title}
                       </h4>
-                      <p className="text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-3 font-medium">{artwork.medium}</p>
+                      <p 
+                        className="text-sm mb-3 font-medium"
+                        style={{ 
+                          backgroundImage: `linear-gradient(to right, #d2ae6d, #c43438)`,
+                          WebkitBackgroundClip: 'text',
+                          backgroundClip: 'text',
+                          color: 'transparent'
+                        }}
+                      >
+                        {artwork.medium}
+                      </p>
                       <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
                         {artwork.description}
                       </p>
@@ -151,6 +211,14 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
           </div>
         </div>
       </div>
+
+      {/* ArtworkModal */}
+      <ArtworkModal 
+        artwork={selectedArtwork}
+        artist={artist}
+        isOpen={isArtworkModalOpen}
+        onClose={handleCloseArtworkModal}
+      />
     </div>
   );
 }

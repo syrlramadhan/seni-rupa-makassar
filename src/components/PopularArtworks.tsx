@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { artistsData } from '@/data/artists';
 import Image from 'next/image';
+import ArtworkModal from './ArtworkModal';
 
 interface Artwork {
   id: string;
@@ -14,9 +15,25 @@ interface Artwork {
   price?: string;
   description: string;
   popularity: number;
+  created_at: string;
 }
 
-export default function PopularArtworks() {
+interface Artist {
+  id: string;
+  name: string;
+  whatsapp?: string;
+  profileImage: string;
+  bio: string;
+  style: string;
+  location: string;
+  experience: string;
+}
+
+interface PopularArtworkProps {
+  artist?: Artist | null; // Made optional since it's not used
+}
+
+export default function PopularArtworks(_props: PopularArtworkProps) {
   // Compile all artworks from all artists and add popularity scores
   const allArtworks: Artwork[] = artistsData.flatMap((artist, artistIndex) => 
     artist.artworks.map((artwork, artworkIndex) => ({
@@ -27,13 +44,21 @@ export default function PopularArtworks() {
   ).sort((a, b) => b.popularity - a.popularity).slice(0, 8); // Get top 8 popular artworks
 
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
+  const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleArtworkClick = (artwork: Artwork) => {
+    // Find the artist for this artwork
+    const artist = artistsData.find(artist => artist.name === artwork.artistName);
     setSelectedArtwork(artwork);
+    setSelectedArtist(artist || null);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    setIsModalOpen(false);
     setSelectedArtwork(null);
+    setSelectedArtist(null);
   };
 
   // Scroll functions
@@ -56,12 +81,12 @@ export default function PopularArtworks() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle geometric patterns */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-100/40 to-purple-100/40 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-bl from-purple-100/30 to-pink-100/30 rounded-full blur-2xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-100/40 to-yellow-100/40 rounded-full blur-xl"></div>
+        <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-bl from-yellow-100/30 to-red-100/30 rounded-full blur-2xl"></div>
         
         {/* Decorative lines */}
-        <div className="absolute top-16 right-1/4 w-64 h-1 bg-gradient-to-r from-blue-200/50 via-purple-200/50 to-transparent rounded-full transform rotate-12"></div>
-        <div className="absolute bottom-20 left-1/4 w-48 h-1 bg-gradient-to-r from-purple-200/40 via-pink-200/40 to-transparent rounded-full transform -rotate-6"></div>
+        <div className="absolute top-16 right-1/4 w-64 h-1 bg-gradient-to-r from-amber-200/50 via-yellow-200/50 to-transparent rounded-full transform rotate-12"></div>
+        <div className="absolute bottom-20 left-1/4 w-48 h-1 bg-gradient-to-r from-yellow-200/40 via-red-200/40 to-transparent rounded-full transform -rotate-6"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -69,7 +94,7 @@ export default function PopularArtworks() {
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Karya Seni
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 ml-3">
+            <span className="text-transparent bg-clip-text ml-3" style={{ backgroundImage: `linear-gradient(to right, #d2ae6d, #eab308, #c43438)`, WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
               Paling Populer
             </span>
           </h2>
@@ -79,9 +104,9 @@ export default function PopularArtworks() {
           
           {/* Decorative elements */}
           <div className="flex justify-center items-center space-x-4">
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-            <div className="w-3 h-3 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full"></div>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+            <div className="w-12 h-1 rounded-full" style={{ background: `linear-gradient(to right, #d2ae6d, #eab308)` }}></div>
+            <div className="w-3 h-3 rounded-full" style={{ background: `linear-gradient(to bottom right, #eab308, #c43438)` }}></div>
+            <div className="w-8 h-1 rounded-full" style={{ background: `linear-gradient(to right, #eab308, #c43438)` }}></div>
           </div>
         </div>
 
@@ -92,8 +117,10 @@ export default function PopularArtworks() {
             onClick={scrollLeft}
             className="hidden md:flex absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 items-center justify-center group"
             style={{ marginLeft: '-24px' }}
+            onMouseEnter={(e) => e.currentTarget.querySelector('svg')!.style.color = '#d2ae6d'}
+            onMouseLeave={(e) => e.currentTarget.querySelector('svg')!.style.color = '#4b5563'}
           >
-            <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-gray-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -103,8 +130,10 @@ export default function PopularArtworks() {
             onClick={scrollRight}
             className="hidden md:flex absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:bg-white hover:shadow-xl transition-all duration-300 items-center justify-center group"
             style={{ marginRight: '-24px' }}
+            onMouseEnter={(e) => e.currentTarget.querySelector('svg')!.style.color = '#d2ae6d'}
+            onMouseLeave={(e) => e.currentTarget.querySelector('svg')!.style.color = '#4b5563'}
           >
-            <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-gray-600 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -127,7 +156,7 @@ export default function PopularArtworks() {
                   onClick={() => handleArtworkClick(artwork)}
                 >
                   {/* Popularity Badge */}
-                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-orange-400 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="absolute top-4 left-4 z-10 text-white px-3 py-1 rounded-full text-xs font-bold" style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}>
                     #{index + 1} Popular
                   </div>
 
@@ -157,11 +186,19 @@ export default function PopularArtworks() {
                   {/* Content */}
                   <div className="p-6">
                     <div className="mb-3">
-                      <h3 className="font-bold text-xl text-gray-900 mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-pink-400 transition-all duration-300">
+                      <h3 className="font-bold text-xl text-gray-900 mb-1 transition-all duration-300" onMouseEnter={(e) => {
+                        e.currentTarget.style.background = `linear-gradient(to right, #d2ae6d, #eab308, #c43438)`;
+                        e.currentTarget.style.webkitBackgroundClip = 'text';
+                        e.currentTarget.style.backgroundClip = 'text';
+                        e.currentTarget.style.color = 'transparent';
+                      }} onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'none';
+                        e.currentTarget.style.color = '#111827';
+                      }}>
                         {artwork.title}
                       </h3>
                       <p className="text-sm text-gray-500 mb-2">oleh {artwork.artistName}</p>
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-purple-700 text-xs rounded-full font-medium">
+                      <span className="inline-block px-3 py-1 text-xs rounded-full font-medium" style={{ backgroundColor: 'rgba(210, 174, 109, 0.1)', color: '#92400e' }}>
                         {artwork.medium}
                       </span>
                     </div>
@@ -183,10 +220,36 @@ export default function PopularArtworks() {
                     )}
                   </div>
 
-                  {/* View Details Button */}
+                  {/* WhatsApp Purchase Button */}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white to-transparent p-6 pt-8 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-200">
-                      Lihat Detail
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const artworkArtist = artistsData.find(a => a.name === artwork.artistName);
+                        if (!artworkArtist || !artworkArtist.whatsapp) return;
+                        
+                        const message = `Halo ${artworkArtist.name}, saya tertarik dengan karya "${artwork.title}" (${artwork.year}). 
+
+Detail karya:
+Judul: ${artwork.title}
+Medium: ${artwork.medium}
+Tahun: ${artwork.year}
+${artwork.price ? `Harga: ${artwork.price}` : ''}
+
+Bisakah kita diskusikan lebih lanjut?`;
+
+                        const whatsappUrl = `https://wa.me/${artworkArtist.whatsapp}?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                      }}
+                      className="w-full text-white py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2"
+                      style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = `linear-gradient(to right, #c49c5a, #a02a2e)`}
+                      onMouseLeave={(e) => e.currentTarget.style.background = `linear-gradient(to right, #d2ae6d, #c43438)`}
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515"/>
+                      </svg>
+                      <span>Beli via WhatsApp</span>
                     </button>
                   </div>
                 </div>
@@ -206,46 +269,13 @@ export default function PopularArtworks() {
         </div>
       </div>
 
-      {/* Simple Modal for artwork detail */}
-      {selectedArtwork && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={handleCloseModal}>
-          <div className="relative bg-white rounded-xl max-w-md w-full max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/10 rounded-full flex items-center justify-center text-gray-700 hover:bg-black/20 transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            <div className="relative h-64">
-              <Image
-                src={selectedArtwork.image}
-                alt={selectedArtwork.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{selectedArtwork.title}</h3>
-              <p className="text-gray-600 mb-4">oleh {selectedArtwork.artistName}</p>
-              <div className="flex items-center space-x-4 mb-4 text-sm text-gray-500">
-                <span>{selectedArtwork.medium}</span>
-                <span>•</span>
-                <span>{selectedArtwork.year}</span>
-                <span>•</span>
-                <span>{selectedArtwork.popularity}% populer</span>
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-4">{selectedArtwork.description}</p>
-              {selectedArtwork.price && (
-                <div className="text-xl font-bold text-gray-900">{selectedArtwork.price}</div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* ArtworkModal */}
+      <ArtworkModal 
+        artwork={selectedArtwork}
+        artist={selectedArtist}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }

@@ -73,7 +73,7 @@ export default function ArtistCard({ artist, onClick }: ArtistCardProps) {
 
             {/* Artwork preview */}
             <div className="flex justify-center space-x-2 pt-2">
-              {artist.artworks.slice(0, 3).map((artwork, index) => (
+              {artist.artworks.slice(0, 3).map((artwork) => (
                 <div key={artwork.id} className="relative w-8 h-8 rounded-lg overflow-hidden border border-amber-200">
                   <Image
                     src={artwork.image}

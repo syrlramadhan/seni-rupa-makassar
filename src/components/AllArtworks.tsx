@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { artistsData } from '@/data/artists';
 import Image from 'next/image';
+import ArtworkModal from './ArtworkModal';
 
 interface Artwork {
   id: string;
@@ -13,36 +14,65 @@ interface Artwork {
   year: number;
   price?: string;
   description: string;
+  created_at: string;
 }
 
 export default function AllArtworks() {
+  // State declarations first
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedMedium, setSelectedMedium] = useState('');
+  const [sortBy, setSortBy] = useState('newest'); // newest, oldest, title
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
+  const [selectedArtist, setSelectedArtist] = useState<{
+    id: string;
+    name: string;
+    whatsapp?: string;
+    profileImage: string;
+    bio: string;
+    style: string;
+    location: string;
+    experience: string;
+  } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const itemsPerPage = 12;
+
   // Compile all artworks from all artists
-  const allArtworks: Artwork[] = artistsData.flatMap(artist => 
+  const baseArtworks: Artwork[] = artistsData.flatMap(artist => 
     artist.artworks.map(artwork => ({
       ...artwork,
       artistName: artist.name,
     }))
   );
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedMedium, setSelectedMedium] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
-  const itemsPerPage = 12;
+  // Sort artworks based on selected sort option
+  const sortedArtworks = useMemo(() => {
+    const sorted = [...baseArtworks];
+    switch (sortBy) {
+      case 'newest':
+        return sorted.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      case 'oldest':
+        return sorted.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+      case 'title':
+        return sorted.sort((a, b) => a.title.localeCompare(b.title));
+      default:
+        return sorted;
+    }
+  }, [baseArtworks, sortBy]);
 
   // Get unique mediums for filter
-  const uniqueMediums = Array.from(new Set(allArtworks.map(artwork => artwork.medium)));
+  const uniqueMediums = Array.from(new Set(baseArtworks.map(artwork => artwork.medium)));
 
   // Filter artworks based on search and medium
   const filteredArtworks = useMemo(() => {
-    return allArtworks.filter(artwork => {
+    return sortedArtworks.filter(artwork => {
       const matchesSearch = artwork.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            artwork.artistName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            artwork.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesMedium = selectedMedium === '' || artwork.medium === selectedMedium;
       return matchesSearch && matchesMedium;
     });
-  }, [searchTerm, selectedMedium]);
+  }, [searchTerm, selectedMedium, sortedArtworks]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredArtworks.length / itemsPerPage);
@@ -60,6 +90,11 @@ export default function AllArtworks() {
     setCurrentPage(1);
   };
 
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
+    setCurrentPage(1);
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Scroll to top when page changes
@@ -67,19 +102,25 @@ export default function AllArtworks() {
   };
 
   const handleArtworkClick = (artwork: Artwork) => {
+    // Find the artist for this artwork
+    const artist = artistsData.find(artist => artist.name === artwork.artistName);
     setSelectedArtwork(artwork);
+    setSelectedArtist(artist || null);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    setIsModalOpen(false);
     setSelectedArtwork(null);
+    setSelectedArtist(null);
   };
 
   return (
     <section id="semua-karya-seni" className="relative min-h-screen py-16 bg-white">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-50/40 to-purple-50/40 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-bl from-purple-50/30 to-pink-50/30 rounded-full blur-2xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-50/40 to-yellow-50/40 rounded-full blur-xl"></div>
+        <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-bl from-yellow-50/30 to-red-50/30 rounded-full blur-2xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -87,7 +128,7 @@ export default function AllArtworks() {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Semua 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 ml-3">
+            <span className="text-transparent bg-clip-text ml-3" style={{ backgroundImage: `linear-gradient(to right, #d2ae6d, #eab308, #c43438)`, WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
               Karya Seni
             </span>
           </h1>
@@ -97,15 +138,15 @@ export default function AllArtworks() {
           
           {/* Decorative elements */}
           <div className="flex justify-center items-center space-x-4 mb-8">
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-            <div className="w-3 h-3 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full"></div>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+            <div className="w-12 h-1 rounded-full" style={{ background: `linear-gradient(to right, #d2ae6d, #eab308)` }}></div>
+            <div className="w-3 h-3 rounded-full" style={{ background: `linear-gradient(to bottom right, #eab308, #c43438)` }}></div>
+            <div className="w-8 h-1 rounded-full" style={{ background: `linear-gradient(to right, #eab308, #c43438)` }}></div>
           </div>
         </div>
 
         {/* Search and Filter Bar */}
         <div className="bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 mb-8 shadow-lg">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex flex-col lg:flex-row gap-4 items-center">
             {/* Search Input */}
             <div className="relative flex-1 w-full">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -118,21 +159,40 @@ export default function AllArtworks() {
                 placeholder="Cari karya seni, seniman, atau deskripsi..."
                 value={searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                className="block w-full pl-10 pr-3 py-3 border border-gray-400 rounded-xl leading-5 bg-white placeholder-gray-700 text-gray-900 font-medium focus:outline-none focus:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-400 rounded-xl leading-5 bg-white placeholder-gray-700 text-gray-900 font-medium focus:outline-none focus:placeholder-gray-500 focus:ring-2 focus:border-transparent transition-all duration-200"
+                onFocus={(e) => e.currentTarget.style.borderColor = '#d2ae6d'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#9ca3af'}
               />
             </div>
 
             {/* Medium Filter */}
-            <div className="w-full md:w-64">
+            <div className="w-full lg:w-48">
               <select
                 value={selectedMedium}
                 onChange={(e) => handleMediumChange(e.target.value)}
-                className="block w-full px-3 py-3 border border-gray-400 rounded-xl bg-white text-gray-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="block w-full px-3 py-3 border border-gray-400 rounded-xl bg-white text-gray-900 font-medium focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200"
+                onFocus={(e) => e.currentTarget.style.borderColor = '#d2ae6d'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#9ca3af'}
               >
                 <option value="">Semua Medium</option>
                 {uniqueMediums.map(medium => (
                   <option key={medium} value={medium}>{medium}</option>
                 ))}
+              </select>
+            </div>
+
+            {/* Sort Filter */}
+            <div className="w-full lg:w-48">
+              <select
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="block w-full px-3 py-3 border border-gray-400 rounded-xl bg-white text-gray-900 font-medium focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200"
+                onFocus={(e) => e.currentTarget.style.borderColor = '#d2ae6d'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#9ca3af'}
+              >
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+                <option value="title">Judul A-Z</option>
               </select>
             </div>
 
@@ -164,19 +224,29 @@ export default function AllArtworks() {
                   
                   {/* Hover overlay */}
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-sm bg-white/20 backdrop-blur-sm px-2 py-1 rounded">
-                      {artwork.year}
-                    </span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm bg-white/20 backdrop-blur-sm px-2 py-1 rounded">
+                        {artwork.year}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="font-bold text-lg text-gray-900 mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-pink-400 transition-all duration-300 line-clamp-1">
+                  <h3 className="font-bold text-lg text-gray-900 mb-1 transition-all duration-300 line-clamp-1" onMouseEnter={(e) => {
+                    e.currentTarget.style.background = `linear-gradient(to right, #d2ae6d, #eab308, #c43438)`;
+                    e.currentTarget.style.webkitBackgroundClip = 'text';
+                    e.currentTarget.style.backgroundClip = 'text';
+                    e.currentTarget.style.color = 'transparent';
+                  }} onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'none';
+                    e.currentTarget.style.color = '#111827';
+                  }}>
                     {artwork.title}
                   </h3>
                   <p className="text-sm text-gray-500 mb-2">oleh {artwork.artistName}</p>
-                  <span className="inline-block px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-purple-700 text-xs rounded-full font-medium mb-3">
+                  <span className="inline-block px-3 py-1 text-xs rounded-full font-medium mb-3" style={{ backgroundColor: 'rgba(210, 174, 109, 0.1)', color: '#92400e' }}>
                     {artwork.medium}
                   </span>
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 mb-3">
@@ -205,6 +275,7 @@ export default function AllArtworks() {
               onClick={() => {
                 setSearchTerm('');
                 setSelectedMedium('');
+                setSortBy('newest');
                 setCurrentPage(1);
               }}
               className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200"
@@ -247,7 +318,7 @@ export default function AllArtworks() {
                   onClick={() => handlePageChange(pageNumber)}
                   className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                     currentPage === pageNumber
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                      ? 'bg-gradient-to-r from-amber-500 to-red-700 text-white'
                       : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
                   }`}
                 >
@@ -270,48 +341,13 @@ export default function AllArtworks() {
         )}
       </div>
 
-      {/* Modal for artwork detail */}
-      {selectedArtwork && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={handleCloseModal}>
-          <div className="relative bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-gray-900 transition-all duration-200 shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            <div className="relative h-80">
-              <Image
-                src={selectedArtwork.image}
-                alt={selectedArtwork.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedArtwork.title}</h3>
-              <p className="text-gray-600 mb-4 text-lg">oleh {selectedArtwork.artistName}</p>
-              <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
-                <span className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-purple-700 rounded-full font-medium">
-                  {selectedArtwork.medium}
-                </span>
-                <span>{selectedArtwork.year}</span>
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-6 text-lg">{selectedArtwork.description}</p>
-              {selectedArtwork.price && (
-                <div className="text-2xl font-bold text-gray-900 mb-4">{selectedArtwork.price}</div>
-              )}
-              <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-200">
-                Hubungi untuk Pembelian
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* ArtworkModal */}
+      <ArtworkModal 
+        artwork={selectedArtwork}
+        artist={selectedArtist}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }

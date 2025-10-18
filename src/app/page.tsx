@@ -8,7 +8,7 @@ export default function Home() {
     <main className="min-h-screen">
       <HeroSection />
       <ArtistsGallery />
-      <PopularArtworks />
+      {/* <PopularArtworks artist={null} /> */}
       <AllArtworks />
     </main>
   );
