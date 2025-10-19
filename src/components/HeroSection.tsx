@@ -1,8 +1,29 @@
 'use client';
 
 import Image from 'next/image';
+import { artistsData } from '@/data/artists';
 
 export default function HeroSection() {
+  // Calculate dynamic statistics
+  const totalArtists = artistsData.length;
+  const totalArtworks = artistsData.reduce((sum, artist) => sum + artist.artworks.length, 0);
+  
+  // Format numbers with threshold logic
+  const formatNumber = (num: number): string => {
+    if (num >= 500) return '500+';
+    if (num >= 200) return '200+';
+    if (num >= 100) return '100+';
+    if (num >= 50) return '50+';
+    if (num >= 20) return '20+';
+    if (num >= 15) return '15+';
+    if (num >= 10) return '10+';
+    if (num >= 5) return '5+';
+    return num.toString();
+  };
+
+  const formattedArtists = formatNumber(totalArtists);
+  const formattedArtworks = formatNumber(totalArtworks);
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -145,19 +166,19 @@ export default function HeroSection() {
         </div>
 
         {/* Featured stats or info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-2xl mx-auto mb-20">
+        <div className="flex justify-center items-center gap-16 text-center mb-20">
           <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>50+</div>
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{formattedArtists}</div>
             <div className="text-gray-300 uppercase tracking-wider text-sm">Artists</div>
           </div>
           <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>200+</div>
+            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{formattedArtworks}</div>
             <div className="text-gray-300 uppercase tracking-wider text-sm">Artworks</div>
           </div>
-          <div className="group">
+          {/* <div className="group">
             <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>15+</div>
             <div className="text-gray-300 uppercase tracking-wider text-sm">Years</div>
-          </div>
+          </div> */}
         </div>
       </div>
 

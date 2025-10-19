@@ -40,7 +40,7 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
   if (!isOpen || !artist) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -48,28 +48,28 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
       ></div>
 
       {/* Modal */}
-      <div className="relative w-full max-w-6xl max-h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] bg-white rounded-lg md:rounded-xl shadow-2xl overflow-hidden">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-10 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-gray-900 transition-all duration-200 shadow-lg"
+          className="absolute top-3 right-3 md:top-6 md:right-6 z-10 w-8 h-8 md:w-10 md:h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white hover:text-gray-900 transition-all duration-200 shadow-lg"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div className="flex flex-col h-full max-h-[90vh] overflow-hidden">
+        <div className="flex flex-col h-full max-h-[95vh] md:max-h-[90vh] overflow-hidden">
           {/* Header */}
-          <div className="relative bg-white p-8 border-b border-gray-100">
-            {/* Background decoration */}
-            <div className="absolute inset-0 opacity-5">
+          <div className="relative bg-white p-4 md:p-8 border-b border-gray-100">
+            {/* Background decoration - hide on mobile */}
+            <div className="absolute inset-0 opacity-5 hidden md:block">
               <div className="absolute top-0 right-0 w-32 h-32 border-2 border-gray-300 rounded-full transform translate-x-8 -translate-y-8"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 border-2 border-gray-300 rounded-full transform -translate-x-6 translate-y-6"></div>
             </div>
 
-            <div className="relative flex items-center space-x-6">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-200 shadow-lg">
+            <div className="relative flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-gray-200 shadow-lg flex-shrink-0">
                 <Image
                   src={artist.profileImage}
                   alt={artist.name}
@@ -78,8 +78,8 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                   className="object-cover"
                 />
               </div>
-              <div>
-                <h2 className="text-3xl font-bold mb-2 text-gray-800">
+              <div className="flex-1">
+                <h2 className="text-2xl md:text-3xl font-bold mb-2 text-gray-800">
                   <span 
                     className="text-transparent bg-clip-text"
                     style={{ 
@@ -91,18 +91,18 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                     {artist.name}
                   </span>
                 </h2>
-                <div className="flex items-center space-x-4 text-gray-600">
-                  <span className="flex items-center space-x-1">
+                <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4 text-gray-600 text-sm md:text-base">
+                  <span className="flex items-center justify-center md:justify-start space-x-1">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                     <span>{artist.location}</span>
                   </span>
-                  <span>•</span>
-                  <span>{artist.experience} pengalaman</span>
-                  <span>•</span>
+                  <span className="hidden md:inline">•</span>
+                  <span className="text-center md:text-left">{artist.experience} pengalaman</span>
+                  <span className="hidden md:inline">•</span>
                   <span 
-                    className="px-3 py-1 rounded-full text-sm text-white border"
+                    className="inline-block px-3 py-1 rounded-full text-sm text-white border mx-auto md:mx-0"
                     style={{ 
                       background: `linear-gradient(to right, #d2ae6d, #c43438)`,
                       borderColor: '#d2ae6d'
@@ -116,12 +116,12 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
             {/* Biography */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+            <div className="mb-6 md:mb-8">
+              <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
                 <div 
-                  className="w-5 h-5 mr-2 rounded flex items-center justify-center"
+                  className="w-5 h-5 mr-2 rounded flex items-center justify-center flex-shrink-0"
                   style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}
                 >
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -130,14 +130,14 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                 </div>
                 Tentang Seniman
               </h3>
-              <p className="text-gray-600 leading-relaxed">{artist.bio}</p>
+              <p className="text-gray-600 leading-relaxed text-sm md:text-base">{artist.bio}</p>
             </div>
 
             {/* Artworks */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+              <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-4 md:mb-6 flex items-center">
                 <div 
-                  className="w-5 h-5 mr-2 rounded flex items-center justify-center"
+                  className="w-5 h-5 mr-2 rounded flex items-center justify-center flex-shrink-0"
                   style={{ background: `linear-gradient(to right, #c43438, #d2ae6d)` }}
                 >
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -147,14 +147,14 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                 Karya Seni ({artist.artworks.length} karya)
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {artist.artworks.map((artwork) => (
                   <div 
                     key={artwork.id} 
-                    className="group bg-white rounded-sm shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    className="group bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer"
                     onClick={() => handleArtworkClick(artwork)}
                   >
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative h-48 md:h-64 overflow-hidden">
                       <Image
                         src={artwork.image}
                         alt={artwork.title}
@@ -162,14 +162,14 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <div className="absolute bottom-3 left-3 text-white opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                         <p className="text-sm font-medium">{artwork.year}</p>
                       </div>
                     </div>
                     
-                    <div className="p-6">
+                    <div className="p-4 md:p-6">
                       <h4 
-                        className="font-semibold text-gray-800 mb-2 transition-all duration-200"
+                        className="font-semibold text-gray-800 mb-2 transition-all duration-200 text-sm md:text-base line-clamp-2"
                         style={{ color: '#1f2937' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundImage = 'linear-gradient(to right, #d2ae6d, #c43438)';
@@ -185,7 +185,7 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                         {artwork.title}
                       </h4>
                       <p 
-                        className="text-sm mb-3 font-medium"
+                        className="text-xs md:text-sm mb-2 md:mb-3 font-medium"
                         style={{ 
                           backgroundImage: `linear-gradient(to right, #d2ae6d, #c43438)`,
                           WebkitBackgroundClip: 'text',
@@ -195,12 +195,12 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                       >
                         {artwork.medium}
                       </p>
-                      <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+                      <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-2 md:line-clamp-3">
                         {artwork.description}
                       </p>
                       {artwork.price && (
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <p className="text-lg font-bold text-gray-800">{artwork.price}</p>
+                        <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
+                          <p className="text-base md:text-lg font-bold text-gray-800">{artwork.price}</p>
                         </div>
                       )}
                     </div>
