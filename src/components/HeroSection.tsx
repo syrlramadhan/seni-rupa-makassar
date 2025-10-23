@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { artistsData } from '@/data/artists';
 
 export default function HeroSection() {
@@ -30,87 +29,19 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" style={{ background: 'linear-gradient(to bottom right, #1c1917, #78350f, #7f1d1d)' }}>
-      {/* Background with scattered artwork images */}
+      {/* Background with gradient only - no artwork images */}
       <div className="absolute inset-0">
-        {/* Top left artwork - Hide on mobile */}
-        <div className="hidden md:block absolute top-16 left-8 w-48 h-64 transform -rotate-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop"
-            alt="Abstract Art"
-            fill
-            className="object-cover rounded-lg shadow-2xl"
-          />
-          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
-        </div>
-
-        {/* Top right artwork - Hide on mobile */}
-        <div className="hidden md:block absolute top-24 right-12 w-40 h-52 transform rotate-6 opacity-80 hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop"
-            alt="Portrait Art"
-            fill
-            className="object-cover rounded-lg shadow-2xl"
-          />
-          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(196, 52, 56, 0.2), transparent)' }}></div>
-        </div>
-
-        {/* Bottom left artwork - Smaller on mobile */}
-        <div className="absolute bottom-20 left-4 md:left-16 w-32 h-24 md:w-52 md:h-40 transform rotate-3 opacity-60 md:opacity-80 hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=500&h=400&fit=crop"
-            alt="Modern Art"
-            fill
-            className="object-cover rounded-lg shadow-2xl"
-          />
-          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
-        </div>
-
-        {/* Center bottom artwork - Smaller on mobile */}
-        <div className="absolute bottom-16 right-4 md:right-1/4 w-28 h-36 md:w-44 md:h-56 transform -rotate-6 opacity-60 md:opacity-80 hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop"
-            alt="Contemporary Art"
-            fill
-            className="object-cover rounded-lg shadow-2xl"
-          />
-          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.2), transparent)' }}></div>
-        </div>
-
-        {/* Additional floating artworks - Hide on mobile */}
-        <div className="hidden lg:block absolute top-1/3 left-1/4 w-36 h-48 transform rotate-12 opacity-60 hover:opacity-90 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=300&h=400&fit=crop"
-            alt="Gallery Art"
-            fill
-            className="object-cover rounded-lg shadow-xl"
-          />
-        </div>
-
-        <div className="hidden lg:block absolute bottom-1/3 right-8 w-32 h-40 transform -rotate-3 opacity-60 hover:opacity-90 transition-opacity duration-300">
-          <Image
-            src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=300&h=400&fit=crop"
-            alt="Art Collection"
-            fill
-            className="object-cover rounded-lg shadow-xl"
-          />
-        </div>
-
-        {/* Mobile-only background artwork - Center piece */}
-        <div className="block md:hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-52 rotate-12 opacity-30">
-          <Image
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop"
-            alt="Background Art"
-            fill
-            className="object-cover rounded-lg shadow-xl"
-          />
-          <div className="absolute inset-0 rounded-lg" style={{ background: 'linear-gradient(to bottom right, rgba(210, 174, 109, 0.3), rgba(196, 52, 56, 0.3))' }}></div>
-        </div>
-
-        {/* Subtle overlay gradient - Stronger on mobile */}
+        {/* Subtle overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 md:from-stone-900/40 via-transparent to-stone-900/60 md:to-stone-900/40"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-950/40 md:via-amber-950/20 to-transparent"></div>
+        
+        {/* Minimal decorative elements */}
+        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-1 h-1 rounded-full opacity-80 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '1s' }}></div>
+        <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 rounded-full opacity-70 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '2s' }}></div>
       </div>
 
       {/* Main content */}
@@ -175,10 +106,6 @@ export default function HeroSection() {
             <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{formattedArtworks}</div>
             <div className="text-gray-300 uppercase tracking-wider text-sm">Artworks</div>
           </div>
-          {/* <div className="group">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2 transition-colors duration-300" style={{ color: 'white' }} onMouseEnter={(e) => e.currentTarget.style.color = '#d2ae6d'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>15+</div>
-            <div className="text-gray-300 uppercase tracking-wider text-sm">Years</div>
-          </div> */}
         </div>
       </div>
 
@@ -191,11 +118,6 @@ export default function HeroSection() {
           </svg>
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-1/3 w-1 h-1 rounded-full opacity-80 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '1s' }}></div>
-      <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 rounded-full opacity-70 animate-pulse" style={{ backgroundColor: '#d2ae6d', animationDelay: '2s' }}></div>
     </section>
   );
 }

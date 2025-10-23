@@ -110,7 +110,7 @@ export default function ArtistsGallery() {
                   key={artist.id}
                   className="group relative flex-shrink-0 h-full cursor-pointer transition-all duration-700 ease-in-out hover:flex-grow mr-1 md:mr-0"
                   style={{
-                    width: '120px',
+                    width: '200px',
                     backgroundImage: `url(${artist.profileImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -141,9 +141,9 @@ export default function ArtistsGallery() {
                     </div>
                   </div>
 
-                  {/* Vertical artist name for collapsed state */}
-                  <div className="group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 flex items-center justify-center">
-                    <span className="text-sm font-semibold tracking-wider whitespace-nowrap transform -rotate-90">
+                  {/* Horizontal artist name for collapsed state */}
+                  <div className="group-hover:opacity-0 transition-opacity duration-300 absolute inset-0 flex items-end justify-center pb-4">
+                    <span className="text-sm font-semibold tracking-wider text-white text-center px-2 py-1 bg-black/50 backdrop-blur-sm rounded">
                       {artist.name.toUpperCase()}
                     </span>
                   </div>
