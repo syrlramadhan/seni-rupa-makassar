@@ -48,7 +48,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Instagram */}
             <a
-              href="#"
+              href="https://www.instagram.com/senirupamakassar/"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2 rounded-full transition-all duration-300 hover:bg-white/10"
