@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Makassar Gallery Art - Galeri Seni Lukis Terbaik",
+  title: "Senirupa Makassar - Galeri Seni Lukis Terbaik",
   description: "Temukan keindahan seni lukis Nusantara melalui karya-karya menakjubkan dari para seniman berbakat Makassar dan sekitarnya",
 };
 
