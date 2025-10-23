@@ -98,7 +98,7 @@ export const artistsData: Artist[] = [
         created_at: "2024-07-18T13:45:00Z"
       }
     ]
-  },
+  }, 
   {
     id: "3",
     name: "A.H Rimba",
