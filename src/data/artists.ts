@@ -103,7 +103,7 @@ export const artistsData: Artist[] = [
     id: "3",
     name: "A.H Rimba",
     bio: "Seniman mural dan street art yang menggabungkan elemen tradisional dengan gaya urban contemporary. Karyanya banyak menghiasi dinding-dinding kota Makassar.",
-    profileImage: "/a.h-rimba.jpg",
+    profileImage: "/a-h-rimba.jpg",
     style: "Urban Contemporary",
     location: "Makassar, Sulawesi Selatan",
     experience: "12 tahun",
