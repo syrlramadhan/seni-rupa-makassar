@@ -48,7 +48,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Instagram */}
             <a
-              href="https://instagram.com/makassargalleryart"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2 rounded-full transition-all duration-300 hover:bg-white/10"
@@ -69,7 +69,7 @@ export default function Header() {
 
             {/* Facebook */}
             <a
-              href="https://facebook.com/makassargalleryart"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2 rounded-full transition-all duration-300 hover:bg-white/10"
@@ -90,7 +90,7 @@ export default function Header() {
 
             {/* TikTok */}
             <a
-              href="https://tiktok.com/@makassargalleryart"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="group p-2 rounded-full transition-all duration-300 hover:bg-white/10"
@@ -149,7 +149,7 @@ export default function Header() {
             <div className="flex justify-center space-x-6">
               {/* Instagram */}
               <a
-                href="https://instagram.com/makassargalleryart"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group p-3 rounded-full transition-all duration-300 hover:bg-white/10"
@@ -170,7 +170,7 @@ export default function Header() {
 
               {/* Facebook */}
               <a
-                href="https://facebook.com/makassargalleryart"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group p-3 rounded-full transition-all duration-300 hover:bg-white/10"
@@ -191,7 +191,7 @@ export default function Header() {
 
               {/* TikTok */}
               <a
-                href="https://tiktok.com/@makassargalleryart"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group p-3 rounded-full transition-all duration-300 hover:bg-white/10"
