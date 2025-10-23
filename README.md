@@ -3,7 +3,7 @@
 **Senirupa Makassar** adalah platform galeri seni digital yang menampilkan karya-karya seniman berbakat dari seluruh Indonesia, khususnya Makassar.  
 Website ini dibuat menggunakan **Next.js** dan berfungsi sebagai wadah bagi seniman untuk memamerkan sekaligus menjual karya seni mereka secara online.
 
-🌐 **Demo Website:** [senirupamakassar.vercel.app](https://senirupamakassar.vercel.app)
+🌐 **Demo Website:** [senirupamakassar.id](https://senirupamakassar.id)
 
 ---
 
@@ -96,7 +96,7 @@ Website ini dibuat menggunakan **Next.js** dan berfungsi sebagai wadah bagi seni
 ## 👥 Kontributor
 
 - **UI/UX Design:** Tim Senirupa Makassar  
-- **Frontend Developer:** [Nama Kamu / Tim Coconut Computer Club]  
+- **Developer:** [Syahrul Ramadhan / Anggota Coconut Computer Club]  
 - **Deployment:** Vercel  
 
 ---
@@ -108,4 +108,4 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 ---
 
 > Dibuat dengan ❤️ oleh komunitas kreatif Makassar  
-> [Coconut Computer Club](https://www.instagram.com/coconutcomputerclub/)
+> [Coconut Computer Club](https://www.instagram.com/coconutdotorg/)

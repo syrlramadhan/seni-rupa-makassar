@@ -111,7 +111,7 @@ export default function ArtistsGallery() {
                   className="group relative flex-shrink-0 h-full cursor-pointer transition-all duration-700 ease-in-out hover:flex-grow mr-1 md:mr-0"
                   style={{
                     width: '120px',
-                    backgroundImage: `url(${artist.artworks[0]?.image})`,
+                    backgroundImage: `url(${artist.profileImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     scrollSnapAlign: 'start',

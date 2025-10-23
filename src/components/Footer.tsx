@@ -14,7 +14,15 @@ export default function Footer() {
 
           {/* Credits */}
           <div className="text-gray-500 text-xs mt-2 md:mt-0">
-            Dibuat dengan ❤️ oleh hacklab
+            Dibuat dengan ❤️ oleh{' '}
+            <a 
+              href="https://github.com/syrlramadhan" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors duration-200 underline decoration-gray-500 hover:decoration-white"
+            >
+              hacklab
+            </a>
           </div>
         </div>
       </div>

@@ -150,7 +150,7 @@ export default function HeroSection() {
             className="group relative overflow-hidden px-10 py-4 text-white font-bold text-lg rounded-none border-2 border-transparent hover:border-white/30 transform hover:scale-105 transition-all duration-300 inline-block"
             style={{ background: `linear-gradient(to right, #d2ae6d, #c43438)` }}
           >
-            <span className="relative z-10">EXPLORE ARTWORKS</span>
+            <span className="relative z-10">CARI KARYA</span>
             <div 
               className="absolute inset-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"
               style={{ background: `linear-gradient(to right, #c43438, #d2ae6d)` }}
@@ -161,7 +161,7 @@ export default function HeroSection() {
             onClick={() => scrollToSection('seniman-berbakat')}
             className="group px-10 py-4 border-2 border-white/50 text-white font-bold text-lg rounded-none hover:bg-white hover:text-stone-900 transform hover:scale-105 transition-all duration-300"
           >
-            VIEW ARTISTS
+            DAFTAR SENIMAN
           </button>
         </div>
 
