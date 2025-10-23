@@ -133,7 +133,7 @@ export default function AllArtworks() {
             </span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Jelajahi koleksi lengkap karya seni dari berbagai seniman berbakat di Makassar Gallery Art
+            Jelajahi koleksi lengkap karya seni dari berbagai seniman berbakat di Senirupa Makassar
           </p>
           
           {/* Decorative elements */}

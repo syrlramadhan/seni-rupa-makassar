@@ -36,7 +36,7 @@ export default function Header() {
             <div className="relative h-10 w-40">
               <Image
                 src={scrolled ? "/Tulisan + Logo Maron lanscape.png" : "/Tulisan + Logo Emas lanscape.png"}
-                alt="Makassar Gallery Art Logo"
+                alt="Senirupa Makassar Logo"
                 fill
                 className="object-contain"
                 priority

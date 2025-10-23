@@ -89,7 +89,7 @@ export default function ArtistsGallery() {
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Temui para seniman luar biasa yang telah mempercayakan karya seni mereka 
-            kepada Makassar Gallery Art
+            kepada Senirupa Makassar
           </p>
           
           {/* Decorative brush strokes */}
