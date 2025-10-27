@@ -1,14 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { artistsData, Artist } from '@/data/artists';
 import ArtistModal from './ArtistModal';
 
 export default function ArtistsGallery() {
   const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleArtistClick = (artist: Artist) => {
+    // Jika sedang drag, jangan buka modal
+    if (isDragging) return;
     setSelectedArtist(artist);
     setIsModalOpen(true);
   };
@@ -18,9 +25,120 @@ export default function ArtistsGallery() {
     setSelectedArtist(null);
   };
 
+  const cardsPerView = 3;
+  const maxIndex = Math.max(0, artistsData.length - cardsPerView);
+  const totalSlides = maxIndex + 1;
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, maxIndex));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  };
+
+  // Reset index ketika data berubah
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [artistsData]);
+
+  // Handle mouse/touch events untuk swipe
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
+    setScrollLeft(containerRef.current?.scrollLeft || 0);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setStartX(touch.pageX - (containerRef.current?.offsetLeft || 0));
+    setScrollLeft(containerRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2; // multiplier untuk sensitivity
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const x = touch.pageX - (containerRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    // Update currentIndex berdasarkan posisi scroll
+    updateCurrentIndexFromScroll();
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    updateCurrentIndexFromScroll();
+  };
+
+  const updateCurrentIndexFromScroll = () => {
+    if (!containerRef.current) return;
+    
+    const container = containerRef.current;
+    const scrollPosition = container.scrollLeft;
+    const cardWidth = container.offsetWidth / cardsPerView;
+    const newIndex = Math.round(scrollPosition / cardWidth);
+    
+    setCurrentIndex(Math.max(0, Math.min(newIndex, maxIndex)));
+    
+    // Smooth snap to position
+    setTimeout(() => {
+      if (containerRef.current) {
+        containerRef.current.scrollTo({
+          left: newIndex * cardWidth,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
+
+  // Handle wheel event untuk scroll horizontal dengan mouse wheel
+  const handleWheel = (e: React.WheelEvent) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      // Horizontal scroll - biarkan default behavior
+      return;
+    }
+    
+    // Vertical scroll - convert ke horizontal
+    e.preventDefault();
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += e.deltaY * 2;
+    }
+  };
+
+  // Effect untuk sync scroll position dengan currentIndex
+  useEffect(() => {
+    if (!containerRef.current || isDragging) return;
+    
+    const container = containerRef.current;
+    const cardWidth = container.offsetWidth / cardsPerView;
+    container.scrollTo({
+      left: currentIndex * cardWidth,
+      behavior: 'smooth'
+    });
+  }, [currentIndex, isDragging]);
+
+  const visibleArtists = artistsData.slice(currentIndex, currentIndex + cardsPerView);
+
   return (
     <section id="seniman-berbakat" className="relative py-16 overflow-hidden bg-white">
-      {/* Artistic Background */}
+      {/* Artistic Background - tetap sama */}
       <div className="absolute inset-0">
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-50/20 to-red-50/30"></div>
@@ -100,21 +218,71 @@ export default function ArtistsGallery() {
           </div>
         </div>
 
-        {/* Accordion-style artists gallery */}
-        <div className="relative mx-auto max-w-6xl">
-          <div className="relative h-96 overflow-hidden rounded-2xl">
-            {/* Artists container */}
-            <div className="flex h-full overflow-x-auto scrollbar-hide px-4 md:px-0 md:justify-center" style={{ scrollSnapType: 'x mandatory' }}>
+        {/* Carousel Container */}
+        <div className="relative mx-auto max-w-4xl">
+          {/* Navigation Buttons */}
+          {currentIndex > 0 && (
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-white transition-all duration-200 hover:scale-110"
+              aria-label="Previous artists"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {currentIndex < maxIndex && (
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-white transition-all duration-200 hover:scale-110"
+              aria-label="Next artists"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Artists Grid Container dengan swipe support */}
+          <div 
+            ref={containerRef}
+            className={`relative h-96 overflow-x-auto overflow-y-hidden rounded-2xl ${
+              isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            }`}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseUp}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+            onWheel={handleWheel}
+            style={{
+              scrollbarWidth: 'none', // Firefox
+              msOverflowStyle: 'none', // IE/Edge
+            }}
+          >
+            {/* Hide scrollbar for Chrome/Safari */}
+            <style jsx>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+
+            <div className="flex h-full px-4" style={{ width: `${(artistsData.length * 100) / cardsPerView}%` }}>
               {artistsData.map((artist) => (
                 <div
                   key={artist.id}
-                  className="group relative flex-shrink-0 h-full cursor-pointer transition-all duration-700 ease-in-out hover:flex-grow mr-1 md:mr-0"
+                  className="group relative flex-shrink-0 h-full cursor-pointer transition-all duration-500 ease-in-out hover:scale-105"
                   style={{
-                    width: '200px',
+                    width: `calc(${100 / artistsData.length}% * ${cardsPerView})`,
+                    minWidth: '250px',
+                    maxWidth: '300px',
                     backgroundImage: `url(${artist.profileImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    scrollSnapAlign: 'start',
                   }}
                   onClick={() => handleArtistClick(artist)}
                 >
@@ -160,6 +328,44 @@ export default function ArtistsGallery() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Dots Indicator (limit to max 10 dots for readability) */}
+          {totalSlides > 1 && (
+            <div className="flex justify-center items-center space-x-2 mt-6">
+              {(() => {
+                // If total slides <= 10 show all, otherwise show a sliding window of 10 centered on currentIndex
+                const maxDots = 10;
+                const dots: number[] = [];
+                if (totalSlides <= maxDots) {
+                  for (let i = 0; i < totalSlides; i++) dots.push(i);
+                } else {
+                  const half = Math.floor(maxDots / 2);
+                  let start = Math.max(0, currentIndex - half);
+                  // ensure the window doesn't overflow the total slides
+                  if (start + maxDots > totalSlides) start = totalSlides - maxDots;
+                  for (let i = start; i < start + maxDots; i++) dots.push(i);
+                }
+
+                return dots.map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? 'bg-gradient-to-r from-amber-500 to-red-500 w-6'
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ));
+              })()}
+            </div>
+          )}
+
+          {/* Slide Counter */}
+          <div className="text-center mt-4 text-sm text-gray-500">
+            {currentIndex + 1} - {Math.min(currentIndex + cardsPerView, artistsData.length)} dari {artistsData.length} seniman
           </div>
         </div>
       </div>

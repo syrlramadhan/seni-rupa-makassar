@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface Artwork {
@@ -31,6 +31,53 @@ interface ArtworkModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+// Fungsi untuk memformat teks dengan baris baru
+const formatTextWithLineBreaks = (text: string) => {
+  if (!text) return null;
+  
+  return text.split('\n').map((line, index) => (
+    <span key={index}>
+      {line}
+      {index < text.split('\n').length - 1 && <br />}
+    </span>
+  ));
+};
+
+// Komponen untuk teks yang dapat diperluas
+const ExpandableText = ({ 
+  text, 
+  maxLength = 150,
+  className = "" 
+}: { 
+  text: string; 
+  maxLength?: number;
+  className?: string;
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (!text) return null;
+
+  const needsTruncation = text.length > maxLength;
+  const displayText = isExpanded || !needsTruncation ? text : text.slice(0, maxLength) + '...';
+
+  return (
+    <div className={className}>
+      <p className="whitespace-pre-line leading-relaxed">
+        {formatTextWithLineBreaks(displayText)}
+      </p>
+      {needsTruncation && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-2 text-sm font-medium transition-all duration-200 hover:underline"
+          style={{ color: '#c43438' }}
+        >
+          {isExpanded ? 'Lihat Lebih Sedikit' : 'Lihat Selengkapnya'}
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default function ArtworkModal({ artwork, artist, isOpen, onClose }: ArtworkModalProps) {
   useEffect(() => {
@@ -185,7 +232,11 @@ Bisakah kita diskusikan lebih lanjut?`;
               {/* Description */}
               <div className="mb-4 md:mb-6">
                 <h4 className="font-semibold text-gray-900 mb-2 md:mb-3 text-sm md:text-base">Deskripsi</h4>
-                <p className="text-gray-700 leading-relaxed text-xs md:text-sm">{artwork.description}</p>
+                <ExpandableText 
+                  text={artwork.description}
+                  maxLength={200}
+                  className="text-gray-700 text-xs md:text-sm"
+                />
               </div>
 
               {/* Price & Actions */}

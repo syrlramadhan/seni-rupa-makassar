@@ -11,6 +11,90 @@ interface ArtistModalProps {
   onClose: () => void;
 }
 
+// Fungsi untuk memformat teks dengan baris baru
+const formatTextWithLineBreaks = (text: string) => {
+  if (!text) return null;
+  
+  return text.split('\n').map((line, index) => (
+    <span key={index}>
+      {line}
+      {index < text.split('\n').length - 1 && <br />}
+    </span>
+  ));
+};
+
+// Komponen untuk teks yang dapat diperluas
+const ExpandableText = ({ 
+  text, 
+  maxLength = 150,
+  className = "" 
+}: { 
+  text: string; 
+  maxLength?: number;
+  className?: string;
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (!text) return null;
+
+  const needsTruncation = text.length > maxLength;
+  const displayText = isExpanded || !needsTruncation ? text : text.slice(0, maxLength) + '...';
+
+  return (
+    <div className={className}>
+      <p className="whitespace-pre-line leading-relaxed">
+        {formatTextWithLineBreaks(displayText)}
+      </p>
+      {needsTruncation && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-2 text-sm font-medium transition-all duration-200 hover:underline"
+          style={{ color: '#c43438' }}
+        >
+          {isExpanded ? 'Lihat Lebih Sedikit' : 'Lihat Selengkapnya'}
+        </button>
+      )}
+    </div>
+  );
+};
+
+// Komponen untuk teks yang dapat diperluas di kartu artwork
+const ArtworkCardDescription = ({ 
+  text,
+  maxLines = 2
+}: { 
+  text: string;
+  maxLines?: number;
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (!text) return null;
+
+  return (
+    <div>
+      <p 
+        className={`text-gray-600 leading-relaxed overflow-hidden transition-all duration-300 ${
+          !isExpanded ? `line-clamp-${maxLines}` : ''
+        } whitespace-pre-line`}
+      >
+        {formatTextWithLineBreaks(text)}
+      </p>
+      {text.length > 100 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
+          className="mt-1 text-xs font-medium transition-all duration-200 hover:underline"
+          style={{ color: '#c43438' }}
+        >
+          {isExpanded ? 'Lebih Sedikit' : 'Selengkapnya'}
+        </button>
+      )}
+    </div>
+  );
+};
+
 export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProps) {
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const [isArtworkModalOpen, setIsArtworkModalOpen] = useState(false);
@@ -130,7 +214,11 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                 </div>
                 Tentang Seniman
               </h3>
-              <p className="text-gray-600 leading-relaxed text-sm md:text-base">{artist.bio}</p>
+              <ExpandableText 
+                text={artist.bio}
+                maxLength={300}
+                className="text-gray-600 text-sm md:text-base"
+              />
             </div>
 
             {/* Artworks */}
@@ -195,9 +283,10 @@ export default function ArtistModal({ artist, isOpen, onClose }: ArtistModalProp
                       >
                         {artwork.medium}
                       </p>
-                      <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-2 md:line-clamp-3">
-                        {artwork.description}
-                      </p>
+                      <ArtworkCardDescription 
+                        text={artwork.description}
+                        maxLines={3}
+                      />
                       {artwork.price && (
                         <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
                           <p className="text-base md:text-lg font-bold text-gray-800">{artwork.price}</p>
