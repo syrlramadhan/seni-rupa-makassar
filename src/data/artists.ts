@@ -56,18 +56,38 @@ export const artistsData: Artist[] = [
   {
     id: "3",
     name: "A.H Rimba",
-    bio: "Seniman mural dan street art yang menggabungkan elemen tradisional dengan gaya urban contemporary. Karyanya banyak menghiasi dinding-dinding kota Makassar.",
+    bio: "Amir Hafid Rimba, lahir di Bone 28 Desember\nPendidikan tahun 1990 seni Rupa IKIP/UNM Makassar\nAlamat Taeng, Kabupaten Gowa, Sulawesi Selatan\n\nPerupa, sejak tahun 1990 awal aktif sampai sekarang berkesenian / berpameran,baik local, nasional dan internasional, beberapa kali menjadi penggagas event festival.",
     profileImage: "/rimba.jpg",
-    style: "Urban Contemporary",
+    style: "-",
     location: "Makassar, Sulawesi Selatan",
-    experience: "",
-    artworks: []
+    experience: "20+ tahun",
+    whatsapp: "628124296806",
+    artworks: [
+      {
+        id: "3a",
+        title: "De gaga jago #2",
+        image: "/de-gaga-jago-2.jpg",
+        year: 2020,
+        medium: "Akrilik diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T03:08:00Z"
+      },
+      {
+        id: "3b",
+        title: "Ma'girik (Bissu)",
+        image: "/ma-girik-bissu.jpg",
+        year: 2023,
+        medium: "Akrilik diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T03:08:00Z"
+      }
+    ]
   },
   {
     id: "4",
     name: "Ahmad Anzul",
     bio: "-",
-    profileImage: "/ibu-aku-rindu.jpg",
+    profileImage: "/ahmad-anzul.jpg",
     style: "-",
     location: "Makassar, Sulawesi Selatan",
     experience: "5 tahun",
@@ -80,6 +100,15 @@ export const artistsData: Artist[] = [
         medium: "-",
         description: "“Ibu, Aku Rindu” pada Pallu Ce'la, Paria Kambu dan Posso. Pada dekapan, belaian dan nesehat.\nIbu, Aku rindu....\nPadamu....\nAl-Fatihah.... ",
         created_at: "2025-10-26T22:29:00Z"
+      },
+      {
+        id: "4b",
+        title: "Kampung garam “Tiga Batu”",
+        image: "/kampung-garam-tiga-batu.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T06:25:00Z"
       }
     ]
   },
@@ -125,7 +154,7 @@ export const artistsData: Artist[] = [
   },
   {
     id: "7",
-    name: "Asman Djamin",
+    name: "Asman Djasmin",
     bio: "Asman Djasmin, lahir di Makassar pada tanggal 01 Agustus 1967, mulai belajar melukis tahun 1978 di Fort Rotterdam, sempat kuliah jurusan seni murni di Univesitas Negeri Makassar, Alumni Universitas Hasanuddin jurusan Ilmu Komunikasi dan juga menyelesaikan studinya di Universitas yang sama dengan jurusan Perpustakaan dan Informasi, serta alumni PGSD Universitas Negeri Makassar.",
     profileImage: "/asman-djamin.jpg",
     style: "-",
@@ -208,7 +237,7 @@ export const artistsData: Artist[] = [
     id: "11",
     name: "Djamaluddin Tawil",
     bio: "Djamaluddin Tawil (1953-2011)\nDjamaluddin Tawil adalah salah satu perupa realis asal Makassar yang perjalanan kreatifnya menandai peta seni rupa Sulawesi Selatan sejak dekade 1970-an.\n\nLahir di Sengkang, 18 November 1953, dan wafat di Makassar, 1 Februari 2011, Djamaluddin dikenal sebagai seniman yang menjadikan hidupnya sebagai persembahan bagi seni — penuh keberanian, kejujuran, dan dedikasi.\n\nSejak muda, ia menunjukkan bakat dan ketertarikan kuat pada seni, namun pilihan itu sempat tidak mendapat restu keluarga. Seusai menamatkan SMA di Makassar, Djamaluddin mengambil keputusan besar: meninggalkan rumah dan tiket bebas tes kuliah kedokteran untuk mengejar panggilan hatinya di dunia seni. Ia berangkat ke Jakarta dengan tekad bulat, tanpa dukungan, hanya berbekal keyakinan bahwa seni adalah jalan hidup yang tak bisa ditinggalkan.\n\nDi Jakarta, ia menempuh pendidikan di Institut Kesenian Jakarta (IKJ) dan aktif di berbagai kegiatan seni rupa, teater, dan menulis. Dunia teater dan sastra memperkaya sensibilitasnya terhadap emosi, narasi, dan manusia — sesuatu yang kelak tampak kuat dalam karya-karyanya yang penuh kehangatan dan refleksi.\n\nSekembalinya ke Makassar, ia menyelesaikan studi di Universitas Negeri Makassar pada tahun 1984, lalu aktif sebagai perupa, penatar, dan pengajar seni rupa  hingga akhir hayatnya. Djamaluddin berperan penting dalam menumbuhkan gairah dan apresiasi seni di kalangan seniman muda Sulawesi Selatan.\n\nKarya-karya awalnya berakar pada aliran realisme, dengan fokus pada keindahan budaya, lanskap alam, dan kehidupan rakyat — tema-tema yang ia lukis dengan emosi yang jujur dan lembut. Namun sejak 2008, arah karyanya  beralih menuju seni lukis kaligrafi Islami, menandai fase spiritual yang lebih dalam dalam perjalanan seninya. Melalui kaligrafi, ia menemukan bahasa baru yang menggabungkan bentuk, warna, dan makna sebagai wujud perenungan spiritual.\n\nSelama hidupnya, Djamaluddin aktif berpameran di berbagai ruang seni di Sulawesi Selatan dan Pulau Jawa. Karya-karyanya telah lama menjadi bagian penting dari  ruang seni Taman Budaya Makassar (kini Gedung Mulo Makassar), tempat yang masih memajang karyanya bahkan belasan tahun setelah kepergiannya. Pada tahun 2025, karyanya kembali dipamerkan di Museum Rotterdam Makassar, sebagai bentuk penghargaan atas perjalanan panjang dan dedikasinya terhadap dunia seni rupa - serta sebagai pengingat bahwa karya sejati tak pernah benar-benar berakhir.",
-    profileImage: "/akkarena.jpg",
+    profileImage: "/djamaluddin-tawil.jpg",
     style: "-",
     location: "Makassar, Sulawesi Selatan",
     experience: "20+ tahun",
@@ -358,7 +387,7 @@ export const artistsData: Artist[] = [
     id: "19",
     name: "Jenry Pasassan",
     bio: "-",
-    profileImage: "/benih-semesta.jpg",
+    profileImage: "/jenry-pasassan.jpg",
     style: "-",
     location: "Makassar, Sulawesi Selatan",
     experience: "10 tahun",
@@ -376,9 +405,9 @@ export const artistsData: Artist[] = [
   },
   {
     id: "20",
-    name: "Komets",
+    name: "Komet",
     bio: "Komet adalah imigran dari mars.",
-    profileImage: "/balerina.jpg",
+    profileImage: "/komet.jpg",
     style: "-",
     location: "Makassar, Sulawesi Selatan",
     experience: "10 tahun",
@@ -453,6 +482,15 @@ export const artistsData: Artist[] = [
         medium: "Cat minyak diatas kanvas",
         description: "Setiap kata adalah doa, dan sejatinya doa adalah sebuah pengharapan. Konsep pemikiran semacam inilah, yang penulis yakini dan pegang untuk menemukan sebuah makna hidup terkait doa dan pengharapan. Pengharapan adalah sebuah keyakinan untuk memberikan semangat hidup dalam menjemput hari depan dengan sebuah keberhasilan. Dalam konteks ini, keberhaslian penulis maknai sebagai proses yang selalu terkait dengan sebuah pengharapan dan doa. Pengharapan dan doa keberhasilan saat melaut bagi penulis adalah sebuah keberhasilan yang sangat besar dalam hidup. Keberhasilan dengan tangkapan yang melimpah ruah tentu merupakan sebuah kebahagiaan.\n\nPemikiran semacam itu, menjadi ingatan yang begitu membekas dalam alam pikiran penulis, tatkala bagaimana seorang ayah melangkahkan kaki menuju rumah dengan hasil tangkapan yang melimpah ruah. Kebahagiaan dan keberhasilan ayah dalam mencari nafkah, penulis yakini sebagai sebuah pengharapan  dan realisasi atas setiap bait doa yang dilantunkan anggota keluarga yang lain. Bagi penulis aktivitas dan ritual berdoa adalah sebuah aktivitas yang menghubungkan semangat kehidupan dengan realitas keberhasilan yang diinginkan. Pemaknaan atas doa, penulis maknai juga sebagai sebuah jalan untuk membantu sang ayah dalam membangun sebuah pengharapan yang besar atas keselamatannya. Bagi penulis keselamatan adalah sebuah anugerah besar yang tak ternilai dan merupakan pengharapan besar bagi setiap insan manusia.",
         created_at: "2025-10-27T11:14:00Z"
+      },
+      {
+        id: "23b",
+        title: "Kursi Pesakitan",
+        image: "/kursi-pesakitan.jpg",
+        year: 2023,
+        medium: "Cat minyak diatas kanvas",
+        description: "Karya 'KURSI PESAKITAN' Sebuah kursi tampil menyerupai manusia-kaki-kakinya mengenakan sepatu sandarannya dibalut baju, namun di bagian duduknya tertancap beberapa paku tajam. Karya ini menggambarkan simbol paradoks antara tampilan luar dan kenyataan batin: sesuatu yang tampak beradab dan rapi, namun menyimpan penderitaan dan siksaan tersembunyi. Kursi Pesakitan menjadi metafora bagi manusia yang tampak tenang di permukaan, padahal tengah menanggung rasa bersalah, tekanan, dan luka yang tak terlihat.",
+        created_at: "2025-11-01T03:35:00Z"
       }
     ]
   },
@@ -474,6 +512,416 @@ export const artistsData: Artist[] = [
         description: "Kemerdekaan  adalah hak setiap orang dan hak segala bangsa.",
         created_at: "2025-10-27T11:25:00Z"
       }
+    ]
+  },
+  {
+    id: "25",
+    name: "Achmad Fauzi",
+    bio: "Achmad Fauzi lahir di Makassar 26 Mei 1970, mulai serius menekuni seni rupa sejak ia menimba ilmu di Jurusan Seni Rupa IKIP Ujung Pandang (Sekarang UNM) pada tahun 1989.\n\nSejak mahasiswa Achmad Fauzi dalam berkarya seni lukis tidak terpaku pada satu gaya, teknik atau aliran saja, ia sering melakukan eksplorasi mencari bahasa ungkap yang dianggapnya cocok bagi dirinya dalam berekspresi. Umpamanya, ia sempat menekuni gaya surealis, ekspresif, realis-naturalistis, teknik media campur, patung dsb. Pada kurun waktu itu bahkan ia juga sempat mengisi ilustrasi cerpen, kartun-karikatur di koran dan Majalah. Keragaman jenis dan corak karya-karyanya selama ia menjadi mahasiswa, dapat terbaca pada pameran tunggal akhir studinya.\n\nPada beberapa tahun terakhir karya-karya lukis achmad Fauzi menampakkan corak dekoratif-simbolistik dengan mengangkat tema-tema keseharian dan isyu-isyu aktual. Karya-karyanya tampil naratif dengan warna-warna meriah, obyek-obyek disederhanakan dengan garis-garis lincah dan lugas. Kesan sukacita menikmati perayaan kehidupan inilah kiranya yang ingin ia bagikan kepada penikmatnya.",
+    profileImage: "/achmad-fauzi.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "25a",
+        title: "Alegori Ininnawa #2",
+        image: "/alegori-ininnawa-2.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T03:41:00Z"
+      }
+    ]
+  },
+  {
+    id: "26",
+    name: "Adi stone daeng narang “Dennar”",
+    bio: "Penggiat seni yang berkecimpung di dunia otomotif khususnya motor dengan tehnik pinstriping,artwork dan lettering yang sesekali membuat karya lukis dimedia kanvas dan awal karir dimulai dari galeri seni yang ada di depan balla lompoa yaitu “lestari art gallery” pada tahun 2002 sampai sekarang.",
+    profileImage: "/adi-stone.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: []
+  },
+  {
+    id: "27",
+    name: "Alan Tola",
+    bio: "Alan tola lahir di Makassar 01 Oktober 1965.\nSenang melukis sejak masa kecil dan mulai mengikuti pameran Lukisan sejak tahun 1993 hingga sekarang.",
+    profileImage: "/alan-tola.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "27a",
+        title: "Secangkir Green Tea hangat dengan music Jazz",
+        image: "/secangkir-green-tea-hangat-dengan-music-jazz.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "Secangkir Greentea hangat dengan Musik Jazz adalah sebuah oase ketenangan dan kenyamanan,sebuah introspeksi jiwa yang dalam tentang harmoni,keakraban dan bersahabat, seperti percakapan karib yang mengantar kita untuk merenungkan hakikat kehidupan dan relasi personal antar manusia.\n\nSecangkir Green tea hangat dengan Musik Jazz menyajikan seduhan tentang bagaimana menyicipi dengan nikmat hiruk  pikuk obrolan,canda tawa,santai,nyaman dan yang terdengar adalah harmoni keakraban, dengan komposisi apik,tempo dan birama bak alunan musik Jazz.",
+        created_at: "2025-11-01T03:53:00Z"
+      }
+    ]
+  },
+  {
+    id: "28",
+    name: "Amrullah Syam",
+    bio: "-",
+    profileImage: "/amrullah-syam.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "28a",
+        title: "Spirit to Mangkasarak",
+        image: "/spirit-to-mangkasarak.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T03:57:00Z"
+      }
+    ]
+  },
+  {
+    id: "29",
+    name: "Ananda Al Givari M",
+    bio: "Ananda Al Givari M,  Lahir: 08 Juni 1994\nDomisili : Makassar, Indonesia.",
+    profileImage: "/ananda-al-givari-m.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    whatsapp: "6288245795777",
+    artworks: [
+      {
+        id: "29a",
+        title: "Kegembiraan yang berlebihan",
+        image: "/kegembiraan-yang-berlebihan.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "Lukisan ini berangkat dari gagasan tentang “kegembiraan yang berlebihan”—suasana manis yang hampir menipu. Warna pastel dan bentuk membulat memberi rasa aman, tapi di baliknya ada kesan surealis yang samar; sesuatu yang lucu, tapi juga sedikit melenceng dari kenyataan.\n\nDalam dunia ini, logika dibangun dari rasa ingin bermain. Segala yang absurd menjadi wajar, dan segala yang wajar menjadi bahan tertawaan. Ia adalah  ruang imajinasi yang bebas, di mana kebahagiaan tidak perlu alasan, dan kesedihan bisa disembunyikan di balik tumpukan gula-gula.",
+        created_at: "2025-11-01T03:57:00Z"
+      }
+    ]
+  },
+  {
+    id: "30",
+    name: "Budi Haryawan",
+    bio: "-",
+    profileImage: "/budi-haryawan.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "30a",
+        title: "Our Home… and not for Sale",
+        image: "/our-home-and-not-for-sale.jpg",
+        year: 2025,
+        medium: "Akrilik dan cat minyak diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T04:10:00Z"
+      },
+      {
+        id: "30b",
+        title: "Self Labyrinth",
+        image: "/self-labyrinth.jpg",
+        year: 2025,
+        medium: "Akrilik dan cat minyak diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T04:11:00Z"
+      },
+      {
+        id: "30c",
+        title: "Love and Smile",
+        image: "/love-and-smile.jpg",
+        year: 2025,
+        medium: "Akrilik dan cat minyak diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T04:12:00Z"
+      },
+    ]
+  },
+  {
+    id: "31",
+    name: "Muhammad Gazali ( Chali )",
+    bio: "Nama: Muhammad Gazali sapaan akrab Chali\nTempat/ Tgl Lahir: Laliko, 14 Juli 1991\nLulusan pendidikan seni rupa Unismuh Makassar, dan aktif dalam beberapa kegiatan pameran di dalam dan luar kota Makassar.",
+    profileImage: "/muhammad-gazali.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: []
+  },
+  {
+    id: "32",
+    name: "Den Dede",
+    bio: "-",
+    profileImage: "/den-dede.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "32a",
+        title: "The door to eternal happiness",
+        image: "/the-door-to-eternal-happiness.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "'The door to eternal happiness' pintu menuju kebahagiaan abadi.\nDalam karya ini menggambarkan sebuah pintu bergagang delapan, dimana pada setiap gagang terdapat kode QR yang bisa kita scan. Saat dipindai, kode QR ini mengarahkan kita ke dunia digital yang berisi informasi tambahan tentang karya tersebut.",
+        created_at: "2025-11-01T05:19:00Z"
+      },
+    ]
+  },
+  {
+    id: "33",
+    name: "Muh. Fasli Kadir",
+    bio: "-",
+    profileImage: "/muh-fasli-kadir.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "33a",
+        title: "Pelakon",
+        image: "/pelakon.jpg",
+        year: 2025,
+        medium: "Mix Media",
+        description: "Wajah adalah ekspresi atau cermin kepribadian, namun terkadang tertutup topeng sehingga tetap menjadi misteri.",
+        created_at: "2025-11-01T05:20:00Z"
+      },
+    ]
+  },
+  {
+    id: "34",
+    name: "Hadi Wicaksono",
+    bio: "-",
+    profileImage: "/rupa-tak-serupa.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "34a",
+        title: "Rupa Tak Serupa",
+        image: "/rupa-tak-serupa.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "Rupa tak serupa, titipan nyata leluhur untuk di jaga, bukan senjata tapi simbol harga diri, badik Sulawesi tanah kelahiranku, keris Jawa darah leluhurku.",
+        created_at: "2025-11-01T05:24:00Z"
+      },
+    ]
+  },
+  {
+    id: "35",
+    name: "A. Muh. Fatwa ( Ipat )",
+    bio: "Nama saya Ipat (A. Muh. Fatwa) berasal dari Bulukumba yang lahir pada November 1999. Dari kecil memiliki ketertarikan pada seni dipengaruhi oleh kebiasaan menonton anime Jepang dan bercita-cita ingin menjadi animator. Di dunia perkuliahan mengikuti beberapa komunitas dan organisasi kesenian sehingga dapat membantu saya untuk bereksplorasi lebih dalam lagi pada kesenian.",
+    profileImage: "/a-muh-fatwa.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "5+ tahun",
+    artworks: [
+      {
+        id: "35a",
+        title: "Semi",
+        image: "/semi.jpg",
+        year: 2025,
+        medium: "Pen on paper",
+        description: "Perjalanan menuju akhir yang tak pasti, melalui masa lampau yang disyukuri. Setiap peristiwa adalah jejak yang abadi, mungkin juga seperti sinyal. bahwa yang telah terlampaui dan yang akan dilalui bak bayang2 yang memudar dan nampak pasti di setiap pergantian hari. semi adalah perayaan tentang hari hari yang telah terlampaui, melalui bayang2 yang kian memudar.\n\nDalam hidup, kita akan melawati 3 masa. Masa lalu, masa sekarang dan masa depan. Masa lalu digambarkan sebagai sesuatu yang lambat laun semakin memudar dan pelan2 tak akan nampak berganti masa sekarang yang lebih jelas sedangkan masa depan digambarkan sebagai suatu hal yang samar dan penuh teka teki. Penjelasan ini adalah gambar mengapa setiap gambar diciptakan. Objek yang cenderung samar di ikuti oleh gambar yang lebih jelas hingga gambar yang pelan2 mengecil dan tak nampak.",
+        created_at: "2025-11-01T05:38:00Z"
+      },
+    ]
+  },
+  {
+    id: "36",
+    name: "Jaskar J",
+    bio: "-",
+    profileImage: "/jaskar-j.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "36a",
+        title: "Talking Guitar",
+        image: "/talking-guitar.jpg",
+        year: 2025,
+        medium: "Acrylic Mix diatas kanvas",
+        description: "Mengingatkan seorang gitaris yang mempunyai permainan dan gaya yang unik.",
+        created_at: "2025-11-01T05:40:00Z"
+      },
+    ]
+  },
+  {
+    id: "37",
+    name: "Alm. A. Kahar Wahid",
+    bio: "-",
+    profileImage: "/a-kahar-wahid.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "37a",
+        title: "Waspada Sunami di Losari",
+        image: "/waspada-sunami-di-losari.jpg",
+        year: 2015,
+        medium: "Oil on canvas",
+        description: "-",
+        created_at: "2025-11-01T05:50:00Z"
+      },
+    ]
+  },
+  {
+    id: "38",
+    name: "Karta Jayadi",
+    bio: "-",
+    profileImage: "/karta-jayadi.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    whatsapp: "6282191653226",
+    artworks: [
+      {
+        id: "38a",
+        title: "Jakarta oh Jakarta",
+        image: "/jakarta-oh-jakarta.jpg",
+        year: 2025,
+        medium: "Cat Air",
+        description: "-",
+        created_at: "2025-11-01T05:55:00Z"
+      },
+    ]
+  },
+  {
+    id: "39",
+    name: "Linda Waziza",
+    bio: "-",
+    profileImage: "/linda-waziza.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "10+ tahun",
+    artworks: [
+      {
+        id: "39a",
+        title: "Matahari Setelah Hujan",
+        image: "/matahari-setelah-hujan.jpg",
+        year: 2025,
+        medium: "Cat minyak diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T05:57:00Z"
+      },
+    ]
+  },
+  {
+    id: "40",
+    name: "Makmun Amoeng",
+    bio: "-",
+    profileImage: "/makmun-amoeng.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "40a",
+        title: "Maggasing",
+        image: "/maggasing.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "Kehidupan dalam bermasyarakat yang beragam dan heterogen dihuni oleh beberapa karakter dan strata kehidupan sosial yang pasti akan menimbulkan gesekan yang dipengaruhi oleh sifat manusia yang berlomba lomba dalam rangka pemenuhan hawa nafsu Duniawi akan muncul beberapa sifat manusia. Benturan dan gesekan itu tidak begitu saja mengalir di masyarakat akan tetapi ada sumber kekuatan yang mengatur ritme keras dan Lemahnya sebuah konflik, dan itu semua adalah permainan semata yang diatur dalam mendapatkan keuntungan pada sebuah konflik. Dalam sejarah di sulawesi selatan terjadi perang saudara di karenakan adanya sifat Maggasing yang memutar balikkan fakta sehingga terjadinya perpecahan di beberapa kerajaan kecil di kala itu. Permainan tradisional masyarakat sulawesi selatan yakni Maggasing dimainkan oleh anak anak di kala berkumpul dan bermain dengan teman  sebayanya. Dibutuhkan keahlian dan kecermatan dalam memainkan Gasing agar berputar lebih lama. Tidak hanya itu Gasing juga biasanya di adu dengan gasing lainnya. “Janganlah kita menjadi gasing yang siap di adu dengan saudara kita, kedepankan rasa saling menghormati serta mencermati jika terdapat perbedaan yang bisa diselesaikan dengan musyawarah”",
+        created_at: "2025-11-01T06:04:00Z"
+      },
+    ]
+  },
+  {
+    id: "41",
+    name: "Manca",
+    bio: "-",
+    profileImage: "/manca.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "10+ tahun",
+    artworks: [
+      {
+        id: "41a",
+        title: "Positive Thinking",
+        image: "/positive-thinking.jpg",
+        year: 2025,
+        medium: "Akrilik diatas kanvas",
+        description: "Sebuah pola kebiasaan yang dinamis sehingga kita harus beradaptasi lebih baik dari versi sebelumnya, maka dari itu pentingnya menanggapi suatu hal dengan positif agar proses dan hasilnya lebih baik.",
+        created_at: "2025-11-01T06:09:00Z"
+      },
+    ]
+  },
+  {
+    id: "42",
+    name: "M. Muhlis Lugis, S. Pd., M.Sn.",
+    bio: "-",
+    profileImage: "/muhlis-lugis.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "10+ tahun",
+    artworks: [
+      {
+        id: "42a",
+        title: "Addiction",
+        image: "/addiction.jpg",
+        year: 2025,
+        medium: "Woodcut pada kertas",
+        description: "-",
+        created_at: "2025-11-01T06:13:00Z"
+      },
+    ]
+  },
+  {
+    id: "43",
+    name: "Zainal beta",
+    bio: "-",
+    profileImage: "/zainal-beta.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    artworks: [
+      {
+        id: "43a",
+        title: "Paraga",
+        image: "/paraga.jpg",
+        year: 2025,
+        medium: "Tanah liat diatas kanvas",
+        description: "-",
+        created_at: "2025-11-01T06:17:00Z"
+      },
+    ]
+  },
+  {
+    id: "44",
+    name: "Sofyan Salam",
+    bio: "-",
+    profileImage: "/sofyan-salam.jpg",
+    style: "-",
+    location: "Makassar, Sulawesi Selatan",
+    experience: "20+ tahun",
+    whatsapp: "6281342431099",
+    artworks: [
+      {
+        id: "44a",
+        title: "“Citraan 148a” Karya Fotografi",
+        image: "/citraan-148a.jpg",
+        year: 2025,
+        medium: "-",
+        description: "-",
+        created_at: "2025-11-01T06:31:00Z"
+      },
+      {
+        id: "44b",
+        title: "“Citraan 364” Karya Fotografi",
+        image: "/citraan-364.jpg",
+        year: 2025,
+        medium: "-",
+        description: "-",
+        created_at: "2025-11-01T06:32:00Z"
+      },
     ]
   },
 ];
