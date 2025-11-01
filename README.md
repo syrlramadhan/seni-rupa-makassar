@@ -96,7 +96,7 @@ Website ini dibuat menggunakan **Next.js** dan berfungsi sebagai wadah bagi seni
 ## 👥 Kontributor
 
 - **UI/UX Design:** Tim Senirupa Makassar  
-- **Developer:** [Syahrul Ramadhan / Anggota Coconut Computer Club]  
+- **Developer:** [Syahrul Ramadhan / Anggota COCONUT Computer Club]  
 - **Deployment:** Vercel  
 
 ---
@@ -108,4 +108,4 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 ---
 
 > Dibuat dengan ❤️ oleh komunitas kreatif Makassar  
-> [Coconut Computer Club](https://www.instagram.com/coconutdotorg/)
+> [COCONUT Computer Club](https://www.instagram.com/coconutdotorg/)
